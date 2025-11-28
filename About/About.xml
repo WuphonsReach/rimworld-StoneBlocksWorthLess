@@ -8,9 +8,15 @@
     <supportedVersions>
         <li>1.6</li>
     </supportedVersions>
-    <modDependencies>
-    </modDependencies>
+	<modDependencies>
+		<li>
+			<packageId>imranfish.xmlextensions</packageId>
+			<displayName>XML Extensions</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2574315206</steamWorkshopUrl>
+		</li>
+	</modDependencies>
     <loadAfter>
+        <li>imranfish.xmlextensions</li>
     </loadAfter>
     <description>
     </description>
