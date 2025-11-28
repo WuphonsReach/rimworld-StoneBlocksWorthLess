@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <!-- 
+    A really good example of PatchOperationConditional from Nature is Beautiful
+    https://gist.github.com/thakyZ/64385f3dd38e56c9f7b7e8365a64385b#file-natureisbeautifulwithrimcuisine_twb-xml-L112-L131 
+    -->
+
+  <!-- 
+    In my game, something gets in the way of setting the statBases/MarketValue. 
+    An alternative is to go after stuffProps/statFactors/MarketValue which is the amount
+    of value that things made out of this get. Defs/ThingDef[defName="BlocksGranite"]stuffProps/statFactors/MarketValue
+    -->
+
+  <!-- default MarketValue is 0.9 for vanilla stone blocks and 2.0 for vacstone  -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps</xpath>
+    <match Class="PatchOperationConditional">
+      <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
+      <match Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors/MarketValue</xpath>
+        <match Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
+          <value>
+            <MarketValue>0.05</MarketValue>
+          </value>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
+          <value>
+            <MarketValue>0.05</MarketValue>
+          </value>
+        </nomatch>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps</xpath>
+        <value>
+          <statFactors>
+            <MarketValue>0.05</MarketValue>
+          </statFactors>
+        </value>
+      </nomatch>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="BlocksGranite"]</xpath>
+      <value>
+        <stuffProps>
+          <statFactors>
+            <MarketValue>0.05</MarketValue>
+          </statFactors>
+        </stuffProps>
+      </value>
+    </nomatch>
+  </Operation>
+</Patch>
