@@ -9,106 +9,78 @@
   <!-- 
     In my game, something gets in the way of overriding the statBases/MarketValue. 
     Probably Vanilla Trading Expanded.
-    An alternative is to go after stuffProps/statFactors/MarketValue which is the amount
-    of value that things made out of this get. Defs/ThingDef[defName="BlocksGranite"]stuffProps/statFactors/MarketValue
     -->
 
   <!-- default MarketValue is 0.9 for vanilla stone blocks and 2.0 for vacstone -->
 
-  <Operation Class="PatchOperationConditional">
-    <xpath>Defs/ThingDef[defName="BlocksGranite"]/statBases</xpath>
-    <match Class="PatchOperationConditional">
-      <xpath>Defs/ThingDef[defName="BlocksGranite"]/statBases/MarketValue</xpath>
-      <match Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="BlocksGranite"]/statBases</xpath>
-        <value>
-          <MarketValue>0.10</MarketValue>
-        </value>
-      </match>
-      <nomatch Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="BlocksGranite"]/statBases</xpath>
-        <value>
-          <MarketValue>0.10</MarketValue>
-        </value>
-      </nomatch>
-    </match>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>Defs/ThingDef[defName="BlocksGranite"]</xpath>
-      <value>
-        <statBases>
-          <MarketValue>0.10</MarketValue>
-        </statBases>
-      </value>
-    </nomatch>
-  </Operation>
-  <Operation Class="PatchOperationConditional">
-    <xpath>Defs/ThingDef[defName="BlocksLimestone"]/statBases</xpath>
-    <match Class="PatchOperationConditional">
-      <xpath>Defs/ThingDef[defName="BlocksLimestone"]/statBases/MarketValue</xpath>
-      <match Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="BlocksLimestone"]/statBases</xpath>
-        <value>
-          <MarketValue>0.10</MarketValue>
-        </value>
-      </match>
-      <nomatch Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="BlocksLimestone"]/statBases</xpath>
-        <value>
-          <MarketValue>0.10</MarketValue>
-        </value>
-      </nomatch>
-    </match>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>Defs/ThingDef[defName="BlocksLimestone"]</xpath>
-      <value>
-        <statBases>
-          <MarketValue>0.10</MarketValue>
-        </statBases>
-      </value>
-    </nomatch>
-  </Operation>
-
-  <!-- The following does adjust the "stuffProps/statFactors/MarketValue" but fails to have an in-game effect
+  <!-- Adjusting the "stuffProps/statFactors/MarketValue" fails to have an in-game effect
   on the value of things like shelves and walls. The default value is 0.40. -->
-  
-  <Operation Class="PatchOperationConditional">
-    <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps</xpath>
-    <match Class="PatchOperationConditional">
-      <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
-      <match Class="PatchOperationConditional">
-        <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors/MarketValue</xpath>
-        <match Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
-          <value>
-            <MarketValue>0.05</MarketValue>
-          </value>
-        </match>
-        <nomatch Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps/statFactors</xpath>
-          <value>
-            <MarketValue>0.05</MarketValue>
-          </value>
-        </nomatch>
-      </match>
-      <nomatch Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="BlocksGranite"]/stuffProps</xpath>
-        <value>
-          <statFactors>
-            <MarketValue>0.05</MarketValue>
-          </statFactors>
-        </value>
-      </nomatch>
-    </match>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>Defs/ThingDef[defName="BlocksGranite"]</xpath>
-      <value>
+
+  <!-- per experiments, walls have a base value of around $3.30. -->
+
+  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+    <xpath>Defs/ThingDef[defName="BlocksGranite"]</xpath>
+    <value>
+        <statBases>
+            <MarketValue>0.20</MarketValue>
+        </statBases>
+        <!-- 
         <stuffProps>
           <statFactors>
             <MarketValue>0.05</MarketValue>
           </statFactors>
         </stuffProps>
-      </value>
-    </nomatch>
-  </Operation>
+        -->
+    </value>
+</Operation>
+
+  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+    <xpath>Defs/ThingDef[defName="BlocksLimestone"]</xpath>
+    <value>
+        <statBases>
+            <MarketValue>0.20</MarketValue>
+        </statBases>
+        <!-- 
+        <stuffProps>
+          <statFactors>
+            <MarketValue>0.10</MarketValue>
+          </statFactors>
+        </stuffProps>
+        -->
+    </value>
+</Operation>
+
+  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+    <xpath>Defs/ThingDef[defName="BlocksSandstone"]</xpath>
+    <value>
+        <statBases>
+            <MarketValue>0.50</MarketValue>
+        </statBases>
+        <!--
+        <stuffProps>
+          <statFactors>
+            <MarketValue>0.20</MarketValue>
+          </statFactors>
+        </stuffProps>
+        -->
+    </value>
+</Operation>
+
+  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+    <xpath>Defs/ThingDef[defName="BlocksSlate"]</xpath>
+    <value>
+        <statBases>
+            <MarketValue>0.50</MarketValue>
+        </statBases>
+        <!--
+        <stuffProps>
+          <statFactors>
+            <MarketValue>0.40</MarketValue>
+          </statFactors>
+        </stuffProps>
+        -->
+    </value>
+</Operation>
+
 
 </Patch>
