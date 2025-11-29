@@ -22,7 +22,7 @@
     <xpath>Defs/ThingDef[defName="BlocksGranite"]</xpath>
     <value>
         <statBases>
-            <MarketValue>0.20</MarketValue>
+            <MarketValue>0.15</MarketValue>
         </statBases>
         <!-- 
         <stuffProps>
@@ -38,7 +38,7 @@
     <xpath>Defs/ThingDef[defName="BlocksLimestone"]</xpath>
     <value>
         <statBases>
-            <MarketValue>0.20</MarketValue>
+            <MarketValue>0.15</MarketValue>
         </statBases>
         <!-- 
         <stuffProps>
@@ -54,7 +54,7 @@
     <xpath>Defs/ThingDef[defName="BlocksSandstone"]</xpath>
     <value>
         <statBases>
-            <MarketValue>0.50</MarketValue>
+            <MarketValue>0.40</MarketValue>
         </statBases>
         <!--
         <stuffProps>
@@ -70,7 +70,7 @@
     <xpath>Defs/ThingDef[defName="BlocksSlate"]</xpath>
     <value>
         <statBases>
-            <MarketValue>0.50</MarketValue>
+            <MarketValue>0.40</MarketValue>
         </statBases>
         <!--
         <stuffProps>
@@ -81,6 +81,5 @@
         -->
     </value>
 </Operation>
-
 
 </Patch>
